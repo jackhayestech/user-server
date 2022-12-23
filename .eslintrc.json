@@ -12,7 +12,6 @@
   },
   "plugins": ["@typescript-eslint"],
   "rules": {
-    "semi": "off",
-    "sort-imports": "error"
+    "semi": "off"
   }
 }
