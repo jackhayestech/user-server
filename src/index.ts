@@ -7,13 +7,13 @@ dotenv.config()
 
 // import { middleware } from "./middleware/middleware"
 // import { routes } from "./api/routes"
-// import { db } from "./db"
+import { db } from "./db"
 
 const app = express()
 const port = process.env.PORT
 
 // Initializes the db models and connection.
-// db()
+db()
 
 // The file path to the open api yaml file for route validation.
 const apiSpec = path.join(__dirname, "./data/application.openapi.yaml")
