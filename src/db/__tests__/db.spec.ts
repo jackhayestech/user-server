@@ -1,5 +1,4 @@
 jest.mock("../table_definitions/event.tableDef")
-jest.mock("../table_definitions/eventOwnership.tableDef")
 
 import { db } from "../db"
 
