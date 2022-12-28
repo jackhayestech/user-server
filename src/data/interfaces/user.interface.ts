@@ -1,3 +1,5 @@
+import { Uuid } from "./types"
+
 // Base User interface
 export interface IUser {
   username: string
@@ -5,11 +7,13 @@ export interface IUser {
 }
 
 // User data for public consumption
-export interface PublicUserData extends IUser {
-  uuid: string
+export interface PublicUserData {
+  uuid: Uuid
+  username: string
 }
 
 // Interface for User db object internal use only
-export interface DbUser extends PublicUserData {
+export interface DbUser extends IUser {
+  uuid: Uuid
   id: number
 }
