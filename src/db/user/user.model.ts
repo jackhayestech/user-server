@@ -1,7 +1,7 @@
 import { Model, Optional } from "sequelize"
 
 import { DbUser, PublicUserData } from "../../data/interfaces"
-import { make, getPublicData } from "./utils"
+import { make, getPublicData, getByUuid } from "./utils"
 
 type UserCreationAttributes = Optional<DbUser, "id">
 
@@ -21,6 +21,11 @@ export class User extends Model<DbUser, UserCreationAttributes> {
    * Creates a new instance of the event db
    */
   static make = make
+
+  /**
+   * Finds an event by uuid
+   */
+  static getByUuid = getByUuid
 
   /**
    * Returns the data from a event that can be consumed by api's outside this api

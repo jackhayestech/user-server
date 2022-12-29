@@ -14,15 +14,15 @@ export const middleware = (app: Application, apiSpec: string): void => {
   app.use(json())
 
   // Applies the swagger validation to the application.
-  // app.use(openApiValidation(apiSpec))
+  app.use(openApiValidation(apiSpec))
 
   // If the swagger validation throws an error apply custom error.
-  // app.use(
-  //   (
-  //     err: ValidationError,
-  //     req: Request,
-  //     res: Response,
-  //     next: NextFunction // eslint-disable-line @typescript-eslint/no-unused-vars
-  //   ): void => openApiValidationError(err, req, res, logger)
-  // )
+  app.use(
+    (
+      err: ValidationError,
+      req: Request,
+      res: Response,
+      next: NextFunction // eslint-disable-line @typescript-eslint/no-unused-vars
+    ): void => openApiValidationError(err, req, res, logger)
+  )
 }

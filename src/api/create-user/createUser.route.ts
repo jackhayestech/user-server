@@ -5,7 +5,7 @@ import { CreateUserRequest } from "../../data/interfaces"
 import { createUser } from "./createUser.controller"
 
 /**
- * Route for creating the create event
+ * Route for creating the create user
  * @param req
  * @param res
  * @returns
