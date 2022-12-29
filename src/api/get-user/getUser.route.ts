@@ -2,7 +2,7 @@ import { Request } from "express"
 import { ResponseData } from "@jh-tech/response-object"
 
 import { GetUserParams } from "../../data/interfaces"
-// import { createUser } from "./createUser.controller"
+import { getUser } from "./getUser.controller"
 
 /**
  * Route for creating the create event
@@ -13,9 +13,7 @@ import { GetUserParams } from "../../data/interfaces"
 export const getUserRoute = async (req: Request<GetUserParams>, res: ResponseData) => {
   const userUuid = req.params.userUuid
 
-  // res.data = await createUser(data)
-
-  res.data = userUuid
+  res.data = await getUser(userUuid)
 
   return
 }
