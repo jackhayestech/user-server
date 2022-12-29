@@ -8,6 +8,8 @@ import { User } from "../../db"
  * @returns
  */
 export const createUser = async (data: IUser) => {
+  // TODO check if user name exists
+
   // Creates the event.
   const user = await User.make(data)
 
