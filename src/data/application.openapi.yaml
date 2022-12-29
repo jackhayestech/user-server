@@ -65,7 +65,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CreateUserData'
+                $ref: '#/components/schemas/UserResponseData'
         'default':
           description: Internal server error
           content:
