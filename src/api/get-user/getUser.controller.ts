@@ -10,10 +10,10 @@ import { User } from "../../db"
  * @returns
  */
 export const getUser = async (userUuid: Uuid) => {
-  // Creates the event.
+  // Creates the user.
   const user = await User.getByUuid(userUuid)
 
-  // The event was not found with the provided uuid
+  // The user was not found with the provided uuid
   if (user === null) {
     const mess = `No user found with uuid ${userUuid}`
     throw new ServerError("getUser-userNotFound", mess, 404, "User not found", mess)

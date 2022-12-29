@@ -4,6 +4,7 @@ import { routeSetup } from "@jh-tech/response-object"
 import { logger } from "../utilities"
 import { createUserRoute } from "./create-user/createUser.route"
 import { getUserRoute } from "./get-user/getUser.route"
+import { loginRoute } from "./login/login.route"
 
 /**
  * Creates the application routes.
@@ -15,4 +16,7 @@ export const routes = (app: Application) => {
 
   // Get user route
   app.route("/user/:userUuid").get((req: Request, res: Response) => routeSetup(req, res, getUserRoute, logger))
+
+  // Login route
+  app.route("/login").post((req: Request, res: Response) => routeSetup(req, res, loginRoute, logger))
 }
