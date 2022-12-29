@@ -1,0 +1,160 @@
+openapi: 3.0.1
+info:
+  title: Notes backend api
+  version: 1.0.0
+paths:
+  /user:
+    post:
+      description: Creates a new user.
+      requestBody:
+        required: true
+        content:
+            application/json:
+              schema: 
+                $ref: '#/components/schemas/CreateUserData'
+
+      responses:
+        '200':
+          description: User was successfully created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventResponseData'
+        'default':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServerErrorResponse'
+  /user/{userUuid}:
+    get:
+      parameters:
+        - in: path
+          name: userUuid
+          schema:
+            type: string
+          required: true
+          description: The user uuid the request is trying to retrieve
+      description: Returns a created event.
+      responses:
+        '200':
+          description: User was found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventResponseData'
+        'default':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServerErrorResponse'
+components:
+  schemas:
+    ServerErrorResponse:
+      additionalProperties: false
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ServerError'
+    ServerError:
+      additionalProperties: false
+      type: object
+      properties:
+        id:
+          type: string
+        code:
+          type: string
+        status:
+          type: number
+        title:
+          type: string
+        detail:
+          type: string
+        meta:
+          type: object
+    CreateUserData:
+      type: object
+      properties:
+        data:
+          type: object
+          additionalProperties: false
+          properties:
+            username:
+              type: string
+            password:
+              type: string
+          required:
+            - username
+            - password
+    EventResponseData:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          properties:
+            uuid:
+              type: string
+            username:
+              type: string
+          required:
+            - username
+            - uuid
+    UserEventsResponseData:
+      properties:
+        data:
+          type: object
+          additionalProperties: false
+          properties:
+            events:
+              type: array
+              items:
+                $ref: '#/components/schemas/EventNoOwner'
+    Event:
+      type: object
+      additionalProperties: false
+      properties:
+          uuid:
+            type: string
+          name:
+            type: string
+          dateTime:
+            type: string
+            nullable: true
+          location:
+            type: string
+            nullable: true
+          description:
+            type: string
+            nullable: true
+          owners:
+            type: array
+            items:
+              type: string
+      required:
+        - owners
+        - name
+        - uuid
+    EventNoOwner:
+      type: object
+      additionalProperties: false
+      properties:
+          uuid:
+            type: string
+          name:
+            type: string
+          dateTime:
+            type: string
+            nullable: true
+          location:
+            type: string
+            nullable: true
+          description:
+            type: string
+            nullable: true
+      required:
+        - name
+        - uuid  
+  
